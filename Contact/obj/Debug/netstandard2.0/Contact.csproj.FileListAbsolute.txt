@@ -1,9 +1,0 @@
-C:\Users\Nate\source\repos\Contact\Contact\bin\Debug\netstandard2.0\Contact.deps.json
-C:\Users\Nate\source\repos\Contact\Contact\bin\Debug\netstandard2.0\Contact.dll
-C:\Users\Nate\source\repos\Contact\Contact\bin\Debug\netstandard2.0\Contact.pdb
-C:\Users\Nate\source\repos\Contact\Contact\obj\Debug\netstandard2.0\Contact.csprojAssemblyReference.cache
-C:\Users\Nate\source\repos\Contact\Contact\obj\Debug\netstandard2.0\Contact.csproj.CoreCompileInputs.cache
-C:\Users\Nate\source\repos\Contact\Contact\obj\Debug\netstandard2.0\Contact.AssemblyInfoInputs.cache
-C:\Users\Nate\source\repos\Contact\Contact\obj\Debug\netstandard2.0\Contact.AssemblyInfo.cs
-C:\Users\Nate\source\repos\Contact\Contact\obj\Debug\netstandard2.0\Contact.dll
-C:\Users\Nate\source\repos\Contact\Contact\obj\Debug\netstandard2.0\Contact.pdb
