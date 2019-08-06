@@ -1,0 +1,9 @@
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\bin\Debug\netstandard2.0\Nate.ContactApp.Contact.deps.json
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\bin\Debug\netstandard2.0\Nate.ContactApp.Contact.dll
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\bin\Debug\netstandard2.0\Nate.ContactApp.Contact.pdb
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\obj\Debug\netstandard2.0\Nate.ContactApp.Contact.csprojAssemblyReference.cache
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\obj\Debug\netstandard2.0\Nate.ContactApp.Contact.csproj.CoreCompileInputs.cache
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\obj\Debug\netstandard2.0\Nate.ContactApp.Contact.AssemblyInfoInputs.cache
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\obj\Debug\netstandard2.0\Nate.ContactApp.Contact.AssemblyInfo.cs
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\obj\Debug\netstandard2.0\Nate.ContactApp.Contact.dll
+C:\Users\Nate\Documents\GitHub\Contact-Application\Contact\obj\Debug\netstandard2.0\Nate.ContactApp.Contact.pdb
