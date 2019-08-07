@@ -63,41 +63,36 @@ namespace Nate.ContactApp
                 }
                 else
                 {
-                    var searchData =
-                    from contact in lastSearch
-                    where contact.isActiveRecord && (
-                    contact.firstName.Contains(parameter) ||
-                    contact.lastName.Contains(parameter) ||
-                    contact.email.Contains(parameter) ||
-                    contact.CellPhone.Contains(parameter) ||
-                    contact.HomePhone.Contains(parameter) ||
-                    contact.WorkPhone.Contains(parameter))
-                    select contact;
+                    results = searchAllFields(lastSearch, parameter);
 
                     lastSearchString = parameter;
-                    lastSearch = searchData.ToList();
-                    results = lastSearch;
+                    lastSearch = results;
                 }
             }
             else   
             {
-                var searchData =
-                from contact in database.Get(database)
-                where contact.isActiveRecord && (
-                contact.firstName.Contains(parameter) ||
-                contact.lastName.Contains(parameter) ||
-                contact.email.Contains(parameter) ||
-                contact.CellPhone.Contains(parameter) ||
-                contact.HomePhone.Contains(parameter) ||
-                contact.WorkPhone.Contains(parameter))
-                select contact;
-
-                lastSearch = searchData.ToList();
-                results = lastSearch;
+                results = searchAllFields(database.ContactList, parameter);
+                lastSearch = results;
+                lastSearchString = parameter;
             }
 
             return results;
         }
 
+        private List<Contact> searchAllFields(List<Contact> database, string parameter)
+        {
+            var searchData =
+            from contact in database
+            where contact.isActiveRecord && (
+            contact.firstName.Contains(parameter) ||
+            contact.lastName.Contains(parameter) ||
+            contact.email.Contains(parameter) ||
+            contact.CellPhone.Contains(parameter) ||
+            contact.HomePhone.Contains(parameter) ||
+            contact.WorkPhone.Contains(parameter))
+            select contact;
+
+            return searchData.ToList();
+        }
     }
 }
