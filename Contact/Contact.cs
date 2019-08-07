@@ -73,7 +73,6 @@ namespace Nate.ContactApp
                 properNumber = r.Replace(phone, "");
             }
 
-
             return properNumber;
         }
 
