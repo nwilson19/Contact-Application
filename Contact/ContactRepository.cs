@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nate.ContactApp
 {
-    public class ContactRepository
+    public class ContactRepository : IContactRepository
     {
         public List<Contact> ContactList;
         private string lastSearchString;
