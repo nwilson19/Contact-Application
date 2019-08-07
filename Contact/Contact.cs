@@ -66,10 +66,13 @@ namespace Nate.ContactApp
         private static string formatPhoneNumber(string phone)
         {
             string properNumber = phone;
-            properNumber = properNumber.Replace(" ", "");
-            properNumber = properNumber.Replace("(", "");
-            properNumber = properNumber.Replace(")", "");
-            properNumber = properNumber.Replace("-", "");
+
+            if (properNumber != null)
+            {
+                System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"\D");
+                properNumber = r.Replace(phone, "");
+            }
+
 
             return properNumber;
         }
