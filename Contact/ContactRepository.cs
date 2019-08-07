@@ -8,10 +8,14 @@ namespace Nate.ContactApp
     public class ContactRepository
     {
         public List<Contact> ContactList;
+        private string lastSearchString;
+        private List<Contact> lastSearch;
 
         public ContactRepository()
         {
             ContactList = new List<Contact>();
+            lastSearchString = string.Empty;
+            lastSearch = new List<Contact>();
         }
 
         // Post (Create new record)
@@ -42,15 +46,35 @@ namespace Nate.ContactApp
         }
 
         //Delete - set a flag
-        public  void Delete(ContactRepository database, int id)
+        public void Delete(ContactRepository database, int id)
         {
             database.ContactList.Find(i => i.contactID.Equals(id)).isActiveRecord = false;
         }
 
         //Search all fields for matches
-        public  List<Contact> Filter(ContactRepository database, string parameter)
+        public List<Contact> Filter(ContactRepository database, string parameter)
         {
-            var results =
+            var results = new List<Contact>();
+            if (parameter.Contains(lastSearchString) && lastSearchString != string.Empty)
+            {
+                var searchData =
+                from contact in lastSearch
+                where contact.isActiveRecord && (
+                contact.firstName.Contains(parameter) ||
+                contact.lastName.Contains(parameter) ||
+                contact.email.Contains(parameter) ||
+                contact.CellPhone.Contains(parameter) ||
+                contact.HomePhone.Contains(parameter) ||
+                contact.WorkPhone.Contains(parameter))
+                select contact;
+
+                lastSearchString = parameter;
+                lastSearch = searchData.ToList();
+                results = lastSearch;
+            }
+            else   
+            {
+                var searchData =
                 from contact in database.Get(database)
                 where contact.isActiveRecord && (
                 contact.firstName.Contains(parameter) ||
@@ -61,7 +85,11 @@ namespace Nate.ContactApp
                 contact.WorkPhone.Contains(parameter))
                 select contact;
 
-            return results.ToList();
+                lastSearch = searchData.ToList();
+                results = lastSearch;
+            }
+
+            return results;
         }
 
     }

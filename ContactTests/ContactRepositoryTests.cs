@@ -106,6 +106,29 @@ namespace Nate.ContactApp.Tests
         }
 
         [Fact]
+        public void Filter_works_when_called_multiple_times()
+        {
+            var testContainer = GenerateSmallList();
+
+            //Act
+            var results = testContainer.Filter(testContainer, "Tes");
+            var results2 = testContainer.Filter(testContainer, "Test");
+
+            //Assert
+            foreach (Contact contact in results)
+            {
+                Assert.Contains("Tes", contact.firstName);
+            }
+            Assert.Equal(4, results.Count);
+
+            foreach (Contact contact in results2)
+            {
+                Assert.Contains("Test", contact.firstName);
+            }
+            Assert.Equal(3, results2.Count);
+        }
+
+        [Fact]
         public void Filter_returns_expected_value_last_name()
         {
             var testContainer = GenerateSmallList();
@@ -186,10 +209,20 @@ namespace Nate.ContactApp.Tests
             contact3.HomePhone = "(888) 867-5309";
             contact3.WorkPhone = "(888) 867-5309";
 
+            Contact contact4 = new Contact();
+            contact4.contactID = 9;
+            contact4.email = "newcontact1@gmail.ca";
+            contact4.firstName = "Tes";
+            contact4.lastName = "Contac";
+            contact4.CellPhone = "(888) 867-5309";
+            contact4.HomePhone = "(888) 867-5309";
+            contact4.WorkPhone = "(888) 867-5309";
+
 
             testContainer.Post(testContainer, contact);
             testContainer.Post(testContainer, contact2);
             testContainer.Post(testContainer, contact3);
+            testContainer.Post(testContainer, contact4);
 
 
             return testContainer;
