@@ -55,26 +55,17 @@ namespace Nate.ContactApp
         public List<Contact> Filter(ContactRepository database, string parameter)
         {
             var results = new List<Contact>();
-            if (parameter.Contains(lastSearchString) && lastSearchString != string.Empty)
-            {
-                if(parameter == lastSearchString)
-                {
-                    results = lastSearch;
-                }
-                else
-                {
-                    results = searchAllFields(lastSearch, parameter);
 
-                    lastSearchString = parameter;
-                    lastSearch = results;
-                }
-            }
+            if (parameter.Contains(lastSearchString) && lastSearchString != string.Empty)
+                if(parameter == lastSearchString)
+                    results = lastSearch;
+                else
+                    results = searchAllFields(lastSearch, parameter);
             else   
-            {
                 results = searchAllFields(database.ContactList, parameter);
-                lastSearch = results;
-                lastSearchString = parameter;
-            }
+
+            lastSearch = results;
+            lastSearchString = parameter;
 
             return results;
         }
