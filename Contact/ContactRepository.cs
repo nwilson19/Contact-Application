@@ -57,20 +57,27 @@ namespace Nate.ContactApp
             var results = new List<Contact>();
             if (parameter.Contains(lastSearchString) && lastSearchString != string.Empty)
             {
-                var searchData =
-                from contact in lastSearch
-                where contact.isActiveRecord && (
-                contact.firstName.Contains(parameter) ||
-                contact.lastName.Contains(parameter) ||
-                contact.email.Contains(parameter) ||
-                contact.CellPhone.Contains(parameter) ||
-                contact.HomePhone.Contains(parameter) ||
-                contact.WorkPhone.Contains(parameter))
-                select contact;
+                if(parameter == lastSearchString)
+                {
+                    results = lastSearch;
+                }
+                else
+                {
+                    var searchData =
+                    from contact in lastSearch
+                    where contact.isActiveRecord && (
+                    contact.firstName.Contains(parameter) ||
+                    contact.lastName.Contains(parameter) ||
+                    contact.email.Contains(parameter) ||
+                    contact.CellPhone.Contains(parameter) ||
+                    contact.HomePhone.Contains(parameter) ||
+                    contact.WorkPhone.Contains(parameter))
+                    select contact;
 
-                lastSearchString = parameter;
-                lastSearch = searchData.ToList();
-                results = lastSearch;
+                    lastSearchString = parameter;
+                    lastSearch = searchData.ToList();
+                    results = lastSearch;
+                }
             }
             else   
             {
