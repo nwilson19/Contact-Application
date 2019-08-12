@@ -22,7 +22,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var testContact = testContainer.Get(testContainer, 12);
+            var testContact = testContainer.Get(12);
 
             //Assert
             Assert.Equal(12, testContact.contactID);
@@ -32,11 +32,11 @@ namespace Nate.ContactApp.Tests
         public void Get_returns_expected_list()
         {
             var contactData = GenerateSmallList();
-            var newList = contactData.Get(contactData);
+            var newList = contactData.Get();
 
             foreach (Contact contact in newList)
             {
-                var testContact = contactData.Get(contactData, contact.contactID);
+                var testContact = contactData.Get(contact.contactID);
                 Assert.True(contact.IsEqual(contact, testContact));
             }
         }
@@ -48,7 +48,7 @@ namespace Nate.ContactApp.Tests
             ContactRepository testContainer = GenerateSmallList();
 
             //Act
-            var testContact = testContainer.Get(testContainer, 1);
+            var testContact = testContainer.Get(1);
 
             //Assert
             Assert.Equal(1, testContact.contactID);
@@ -59,10 +59,10 @@ namespace Nate.ContactApp.Tests
         {
             ContactRepository testContainer = GenerateSmallList();
 
-            testContainer.Delete(testContainer, 12);
-            var contact = testContainer.Get(testContainer, 12);
-            var contact2 = testContainer.Get(testContainer, 100);
-            var contact3 = testContainer.Get(testContainer, 1);
+            testContainer.Delete(12);
+            var contact = testContainer.Get(12);
+            var contact2 = testContainer.Get(100);
+            var contact3 = testContainer.Get(1);
 
             Assert.False(contact.isActiveRecord);
             Assert.True(contact2.isActiveRecord);
@@ -83,8 +83,8 @@ namespace Nate.ContactApp.Tests
             newContact.HomePhone = "(888) 867-5309";
             newContact.WorkPhone = "(888) 867-5309";
 
-            testContainer.Put(testContainer, newContact.contactID, newContact);
-            var testContact = testContainer.Get(testContainer, newContact.contactID);
+            testContainer.Put(newContact.contactID, newContact);
+            var testContact = testContainer.Get(newContact.contactID);
 
             Assert.True(newContact.IsEqual(newContact, testContact));
         }
@@ -95,7 +95,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "Test");
+            var results = testContainer.Filter("Test");
 
             //Assert
             foreach (Contact contact in results)
@@ -111,8 +111,8 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "Tes");
-            var results2 = testContainer.Filter(testContainer, "Test");
+            var results = testContainer.Filter("Tes");
+            var results2 = testContainer.Filter("Test");
 
             //Assert
             foreach (Contact contact in results)
@@ -134,7 +134,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "Contact");
+            var results = testContainer.Filter("Contact");
 
             //Assert
             foreach (Contact contact in results)
@@ -150,7 +150,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "100");
+            var results = testContainer.Filter("100");
 
             //Assert
             foreach (Contact contact in results)
@@ -166,7 +166,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, ".com");
+            var results = testContainer.Filter(".com");
 
             //Assert
             foreach (Contact contact in results)
@@ -219,10 +219,10 @@ namespace Nate.ContactApp.Tests
             contact4.WorkPhone = "(888) 867-5309";
 
 
-            testContainer.Post(testContainer, contact);
-            testContainer.Post(testContainer, contact2);
-            testContainer.Post(testContainer, contact3);
-            testContainer.Post(testContainer, contact4);
+            testContainer.Post(contact);
+            testContainer.Post(contact2);
+            testContainer.Post(contact3);
+            testContainer.Post(contact4);
 
 
             return testContainer;

@@ -19,40 +19,40 @@ namespace Nate.ContactApp
         }
 
         // Post (Create new record)
-        public void Post(ContactRepository database, Contact newContact)
+        public void Post(Contact newContact)
         {
             if (newContact.IsValid())
-                database.ContactList.Add(newContact);
+                ContactList.Add(newContact);
         }
 
         //Put (Update a record)
-        public void Put(ContactRepository database, int id, Contact updatedContact)
+        public void Put(int id, Contact updatedContact)
         {
-            var currentRecord = database.ContactList.Find(i => i.contactID.Equals(id));
-            database.ContactList.Remove(currentRecord);
-            database.ContactList.Add(updatedContact);
+            var currentRecord = ContactList.Find(i => i.contactID.Equals(id));
+            ContactList.Remove(currentRecord);
+            ContactList.Add(updatedContact);
         }
 
         //Get (Return a list)
-        public List<Contact> Get(ContactRepository database)
+        public List<Contact> Get()
         {
-            return database.ContactList;
+            return ContactList;
         }
 
         //Get( ID ) - return a single record
-        public Contact Get(ContactRepository database, int id)
+        public Contact Get(int id)
         {
-            return database.ContactList.Find(i => i.contactID.Equals(id));
+            return ContactList.Find(i => i.contactID.Equals(id));
         }
 
         //Delete - set a flag
-        public void Delete(ContactRepository database, int id)
+        public void Delete(int id)
         {
-            database.ContactList.Find(i => i.contactID.Equals(id)).isActiveRecord = false;
+            ContactList.Find(i => i.contactID.Equals(id)).isActiveRecord = false;
         }
 
         //Search all fields for matches
-        public List<Contact> Filter(ContactRepository database, string parameter)
+        public List<Contact> Filter(string parameter)
         {
             var results = new List<Contact>();
 
@@ -62,7 +62,7 @@ namespace Nate.ContactApp
                 else
                     results = searchAllFields(lastSearch, parameter);
             else   
-                results = searchAllFields(database.ContactList, parameter);
+                results = searchAllFields(ContactList, parameter);
 
             lastSearch = results;
             lastSearchString = parameter;

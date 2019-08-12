@@ -6,19 +6,19 @@ namespace Nate.ContactApp
 {
     interface IContactRepository
     {
-        void Post(ContactRepository database, Contact newContact);
+        void Post(Contact newContact);
         // Post (Create new record)
 
-        void Put(ContactRepository database, int id, Contact updatedContact);
+        void Put(int id, Contact updatedContact);
         //Put (Update a record)
 
-        List<Contact> Get(ContactRepository database);
+        List<Contact> Get();
         //Get (Return a list)
 
-        Contact Get(ContactRepository database, int id);
+        Contact Get(int id);
         //Get( ID ) - return a single record
 
-        void Delete(ContactRepository database, int id);
+        void Delete(int id);
         //Delete - set a flag
     }
 }
