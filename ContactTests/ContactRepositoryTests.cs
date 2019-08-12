@@ -29,6 +29,18 @@ namespace Nate.ContactApp.Tests
         }
 
         [Fact]
+        public void Get_using_Invalid_ID_Returns_null()
+        {
+            var testContainer = GenerateSmallList();
+
+            //Act
+            var testContact = testContainer.Get(88);
+
+            //Assert
+            Assert.Null(testContact);
+        }
+
+        [Fact]
         public void Get_returns_expected_list()
         {
             var contactData = GenerateSmallList();

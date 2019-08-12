@@ -42,7 +42,10 @@ namespace Nate.ContactApp
         //Get( ID ) - return a single record
         public Contact Get(int id)
         {
-            return ContactList.Find(i => i.contactID.Equals(id));
+            // Currently will return null if an invalid id
+            // Need to build in some exception handling for cases like this
+            var result = ContactList.Find(i => i.contactID.Equals(id));
+            return result;
         }
 
         //Delete - set a flag
