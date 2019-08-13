@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace Nate.ContactApp.Tests
@@ -12,8 +10,9 @@ namespace Nate.ContactApp.Tests
         {
             ContactRepository test = new ContactRepository();
             List<Contact> testValue = new List<Contact>();
+            var testList = test.Get();
 
-            Assert.Equal(test.ContactList, testValue);
+            Assert.Equal(testList, testValue);
         }
 
         [Fact]
@@ -22,21 +21,33 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var testContact = testContainer.Get(testContainer, 12);
+            var testContact = testContainer.Get(12);
 
             //Assert
             Assert.Equal(12, testContact.contactID);
         }
 
         [Fact]
+        public void Get_using_Invalid_ID_Returns_null()
+        {
+            var testContainer = GenerateSmallList();
+
+            //Act
+            var testContact = testContainer.Get(88);
+
+            //Assert
+            Assert.Null(testContact);
+        }
+
+        [Fact]
         public void Get_returns_expected_list()
         {
             var contactData = GenerateSmallList();
-            var newList = contactData.Get(contactData);
+            var newList = contactData.Get();
 
             foreach (Contact contact in newList)
             {
-                var testContact = contactData.Get(contactData, contact.contactID);
+                var testContact = contactData.Get(contact.contactID);
                 Assert.True(contact.IsEqual(contact, testContact));
             }
         }
@@ -48,7 +59,7 @@ namespace Nate.ContactApp.Tests
             ContactRepository testContainer = GenerateSmallList();
 
             //Act
-            var testContact = testContainer.Get(testContainer, 1);
+            var testContact = testContainer.Get(1);
 
             //Assert
             Assert.Equal(1, testContact.contactID);
@@ -59,10 +70,10 @@ namespace Nate.ContactApp.Tests
         {
             ContactRepository testContainer = GenerateSmallList();
 
-            testContainer.Delete(testContainer, 12);
-            var contact = testContainer.Get(testContainer, 12);
-            var contact2 = testContainer.Get(testContainer, 100);
-            var contact3 = testContainer.Get(testContainer, 1);
+            testContainer.Delete(12);
+            var contact = testContainer.Get(12);
+            var contact2 = testContainer.Get(100);
+            var contact3 = testContainer.Get(1);
 
             Assert.False(contact.isActiveRecord);
             Assert.True(contact2.isActiveRecord);
@@ -83,8 +94,8 @@ namespace Nate.ContactApp.Tests
             newContact.HomePhone = "(888) 867-5309";
             newContact.WorkPhone = "(888) 867-5309";
 
-            testContainer.Put(testContainer, newContact.contactID, newContact);
-            var testContact = testContainer.Get(testContainer, newContact.contactID);
+            testContainer.Put(newContact.contactID, newContact);
+            var testContact = testContainer.Get(newContact.contactID);
 
             Assert.True(newContact.IsEqual(newContact, testContact));
         }
@@ -95,7 +106,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "Test");
+            var results = testContainer.Filter("Test");
 
             //Assert
             foreach (Contact contact in results)
@@ -106,12 +117,35 @@ namespace Nate.ContactApp.Tests
         }
 
         [Fact]
+        public void Filter_works_when_called_multiple_times()
+        {
+            var testContainer = GenerateSmallList();
+
+            //Act
+            var results = testContainer.Filter("Tes");
+            var results2 = testContainer.Filter("Test");
+
+            //Assert
+            foreach (Contact contact in results)
+            {
+                Assert.Contains("Tes", contact.firstName);
+            }
+            Assert.Equal(4, results.Count);
+
+            foreach (Contact contact in results2)
+            {
+                Assert.Contains("Test", contact.firstName);
+            }
+            Assert.Equal(3, results2.Count);
+        }
+
+        [Fact]
         public void Filter_returns_expected_value_last_name()
         {
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "Contact");
+            var results = testContainer.Filter("Contact");
 
             //Assert
             foreach (Contact contact in results)
@@ -127,7 +161,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, "100");
+            var results = testContainer.Filter("100");
 
             //Assert
             foreach (Contact contact in results)
@@ -143,7 +177,7 @@ namespace Nate.ContactApp.Tests
             var testContainer = GenerateSmallList();
 
             //Act
-            var results = testContainer.Filter(testContainer, ".com");
+            var results = testContainer.Filter(".com");
 
             //Assert
             foreach (Contact contact in results)
@@ -186,10 +220,20 @@ namespace Nate.ContactApp.Tests
             contact3.HomePhone = "(888) 867-5309";
             contact3.WorkPhone = "(888) 867-5309";
 
+            Contact contact4 = new Contact();
+            contact4.contactID = 9;
+            contact4.email = "newcontact1@gmail.ca";
+            contact4.firstName = "Tes";
+            contact4.lastName = "Contac";
+            contact4.CellPhone = "(888) 867-5309";
+            contact4.HomePhone = "(888) 867-5309";
+            contact4.WorkPhone = "(888) 867-5309";
 
-            testContainer.Post(testContainer, contact);
-            testContainer.Post(testContainer, contact2);
-            testContainer.Post(testContainer, contact3);
+
+            var recordnumber = testContainer.Post(contact);
+            recordnumber = testContainer.Post(contact2);
+            recordnumber = testContainer.Post(contact3);
+            recordnumber = testContainer.Post(contact4);
 
 
             return testContainer;

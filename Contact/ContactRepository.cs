@@ -5,64 +5,103 @@ using System.Text;
 
 namespace Nate.ContactApp
 {
-    public class ContactRepository
+    public class ContactRepository : IContactRepository
     {
-        public List<Contact> ContactList;
+        private List<Contact> ContactList;
+        private string lastSearchString;
+        private List<Contact> lastSearch;
 
         public ContactRepository()
         {
             ContactList = new List<Contact>();
+            lastSearchString = string.Empty;
+            lastSearch = new List<Contact>();
+        }
+
+        // Save Function name to hide the HTTP verbs for saving
+        public int Save(Contact newContact)
+        {
+            return Post(newContact);
+        }
+
+        public int Save(int id, Contact newContact)
+        {
+            return Put(id, newContact);
         }
 
         // Post (Create new record)
-        public void Post(ContactRepository database, Contact newContact)
+        public int Post(Contact newContact)
         {
             if (newContact.IsValid())
-                database.ContactList.Add(newContact);
+                ContactList.Add(newContact);
+
+            return newContact.contactID;
         }
 
-        //Put (Update a record)
-        public void Put(ContactRepository database, int id, Contact updatedContact)
+        //Put (Update a record, return the record's ID)
+        public int Put(int id, Contact updatedContact)
         {
-            var currentRecord = database.ContactList.Find(i => i.contactID.Equals(id));
-            database.ContactList.Remove(currentRecord);
-            database.ContactList.Add(updatedContact);
+            var currentRecord = ContactList.Find(i => i.contactID.Equals(id));
+            ContactList.Remove(currentRecord);
+            ContactList.Add(updatedContact);
+
+            return updatedContact.contactID;
         }
 
         //Get (Return a list)
-        public List<Contact> Get(ContactRepository database)
+        public List<Contact> Get()
         {
-            return database.ContactList;
+            return ContactList;
         }
 
         //Get( ID ) - return a single record
-        public Contact Get(ContactRepository database, int id)
+        public Contact Get(int id)
         {
-            return database.ContactList.Find(i => i.contactID.Equals(id));
+            // Currently will return null if an invalid id
+            // Need to build in some exception handling for cases like this
+            var result = ContactList.Find(i => i.contactID.Equals(id));
+            return result;
         }
 
         //Delete - set a flag
-        public  void Delete(ContactRepository database, int id)
+        public void Delete(int id)
         {
-            database.ContactList.Find(i => i.contactID.Equals(id)).isActiveRecord = false;
+            ContactList.Find(i => i.contactID.Equals(id)).isActiveRecord = false;
         }
 
         //Search all fields for matches
-        public  List<Contact> Filter(ContactRepository database, string parameter)
+        public List<Contact> Filter(string parameter)
         {
-            var results =
-                from contact in database.Get(database)
-                where contact.isActiveRecord && (
-                contact.firstName.Contains(parameter) ||
-                contact.lastName.Contains(parameter) ||
-                contact.email.Contains(parameter) ||
-                contact.CellPhone.Contains(parameter) ||
-                contact.HomePhone.Contains(parameter) ||
-                contact.WorkPhone.Contains(parameter))
-                select contact;
+            var results = new List<Contact>();
 
-            return results.ToList();
+            if (parameter.Contains(lastSearchString) && lastSearchString != string.Empty)
+                if(parameter == lastSearchString)
+                    results = lastSearch;
+                else
+                    results = searchAllFields(lastSearch, parameter);
+            else   
+                results = searchAllFields(ContactList, parameter);
+
+            lastSearch = results;
+            lastSearchString = parameter;
+
+            return results;
         }
 
+        private List<Contact> searchAllFields(List<Contact> database, string parameter)
+        {
+            var searchData =
+            from contact in database
+            where contact.isActiveRecord && (
+            contact.firstName.Contains(parameter) ||
+            contact.lastName.Contains(parameter) ||
+            contact.email.Contains(parameter) ||
+            contact.CellPhone.Contains(parameter) ||
+            contact.HomePhone.Contains(parameter) ||
+            contact.WorkPhone.Contains(parameter))
+            select contact;
+
+            return searchData.ToList();
+        }
     }
 }
