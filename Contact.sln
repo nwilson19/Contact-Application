@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nate.ContactApp.Contact", "Contact\Nate.ContactApp.Contact.csproj", "{F4AAD02E-F424-4676-87B0-3C07CCEFBE91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nate.ContactApp.Contact.Tests", "ContactTests\Nate.ContactApp.Contact.Tests.csproj", "{DE678336-496A-4CF5-AA39-B27379ABE22C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nate.ContactApp.Contact.Tests", "ContactTests\Nate.ContactApp.Contact.Tests.csproj", "{DE678336-496A-4CF5-AA39-B27379ABE22C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage Management", "Storage Management", "{B8542DFC-B0D2-485F-B613-B47B02BE77F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{F92A9475-BA42-41B3-938B-6092A3DD6ED0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{DE678336-496A-4CF5-AA39-B27379ABE22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE678336-496A-4CF5-AA39-B27379ABE22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE678336-496A-4CF5-AA39-B27379ABE22C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F92A9475-BA42-41B3-938B-6092A3DD6ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F92A9475-BA42-41B3-938B-6092A3DD6ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F92A9475-BA42-41B3-938B-6092A3DD6ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F92A9475-BA42-41B3-938B-6092A3DD6ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
