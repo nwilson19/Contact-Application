@@ -7,7 +7,7 @@ namespace Nate.ContactApp
 {
     public class ContactRepository : IContactRepository
     {
-        public List<Contact> ContactList;
+        private List<Contact> ContactList;
         private string lastSearchString;
         private List<Contact> lastSearch;
 
@@ -19,18 +19,22 @@ namespace Nate.ContactApp
         }
 
         // Post (Create new record)
-        public void Post(Contact newContact)
+        public int Post(Contact newContact)
         {
             if (newContact.IsValid())
                 ContactList.Add(newContact);
+
+            return newContact.contactID;
         }
 
-        //Put (Update a record)
-        public void Put(int id, Contact updatedContact)
+        //Put (Update a record, return the record's ID)
+        public int Put(int id, Contact updatedContact)
         {
             var currentRecord = ContactList.Find(i => i.contactID.Equals(id));
             ContactList.Remove(currentRecord);
             ContactList.Add(updatedContact);
+
+            return updatedContact.contactID;
         }
 
         //Get (Return a list)

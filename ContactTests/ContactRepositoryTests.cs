@@ -12,8 +12,9 @@ namespace Nate.ContactApp.Tests
         {
             ContactRepository test = new ContactRepository();
             List<Contact> testValue = new List<Contact>();
+            var testList = test.Get();
 
-            Assert.Equal(test.ContactList, testValue);
+            Assert.Equal(testList, testValue);
         }
 
         [Fact]
@@ -231,10 +232,10 @@ namespace Nate.ContactApp.Tests
             contact4.WorkPhone = "(888) 867-5309";
 
 
-            testContainer.Post(contact);
-            testContainer.Post(contact2);
-            testContainer.Post(contact3);
-            testContainer.Post(contact4);
+            var recordnumber = testContainer.Post(contact);
+            recordnumber = testContainer.Post(contact2);
+            recordnumber = testContainer.Post(contact3);
+            recordnumber = testContainer.Post(contact4);
 
 
             return testContainer;
