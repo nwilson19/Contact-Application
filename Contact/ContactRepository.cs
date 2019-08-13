@@ -18,6 +18,17 @@ namespace Nate.ContactApp
             lastSearch = new List<Contact>();
         }
 
+        // Save Function name to hide the HTTP verbs for saving
+        public int Save(Contact newContact)
+        {
+            return Post(newContact);
+        }
+
+        public int Save(int id, Contact newContact)
+        {
+            return Put(id, newContact);
+        }
+
         // Post (Create new record)
         public int Post(Contact newContact)
         {
