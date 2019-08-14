@@ -12,19 +12,19 @@ namespace Nate.ContactApp
         public string HomePhone
         {
             get => phoneHome;
-            set => phoneHome = formatPhoneNumber(value);
+            set => phoneHome = value.StripPhoneFormatting();
         }
         private string phoneWork;
         public string WorkPhone
         {
             get => phoneWork;
-            set => phoneWork = formatPhoneNumber(value);
+            set => phoneWork = value.StripPhoneFormatting();
         }
         private string phoneCell;
         public string CellPhone
         {
             get => phoneCell;
-            set => phoneCell = formatPhoneNumber(value);
+            set => phoneCell = value.StripPhoneFormatting();
         }
 
         public bool isActiveRecord;
@@ -41,40 +41,5 @@ namespace Nate.ContactApp
 
             isActiveRecord = true;
         }
-
-        public bool IsEqual(Contact contact, Contact contact2)
-        {
-            bool isEqual = true;
-            isEqual = contact.isActiveRecord == contact2.isActiveRecord;
-            if (isEqual)
-                isEqual = contact.contactID == contact2.contactID;
-            if (isEqual)
-                isEqual = contact.email == contact2.email;
-            if (isEqual)
-                isEqual = contact.firstName == contact2.firstName;
-            if (isEqual)
-                isEqual = contact.lastName == contact2.lastName;
-            if (isEqual)
-                isEqual = contact.CellPhone == contact2.CellPhone;
-            if (isEqual)
-                isEqual = contact.HomePhone == contact2.HomePhone;
-            if (isEqual)
-                isEqual = contact.WorkPhone == contact2.WorkPhone;
-            return isEqual;
-        }
-
-        private static string formatPhoneNumber(string phone)
-        {
-            string properNumber = phone;
-
-            if (properNumber != null)
-            {
-                System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"\D");
-                properNumber = r.Replace(phone, "");
-            }
-
-            return properNumber;
-        }
-
     }
 }

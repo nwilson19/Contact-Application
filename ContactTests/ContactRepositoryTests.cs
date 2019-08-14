@@ -48,7 +48,7 @@ namespace Nate.ContactApp.Tests
             foreach (Contact contact in newList)
             {
                 var testContact = contactData.Get(contact.contactID);
-                Assert.True(contact.IsEqual(contact, testContact));
+                Assert.True(contact.Equals(testContact));
             }
         }
 
@@ -97,7 +97,7 @@ namespace Nate.ContactApp.Tests
             testContainer.Put(newContact.contactID, newContact);
             var testContact = testContainer.Get(newContact.contactID);
 
-            Assert.True(newContact.IsEqual(newContact, testContact));
+            Assert.True(newContact.Equals(testContact));
         }
 
         [Fact]

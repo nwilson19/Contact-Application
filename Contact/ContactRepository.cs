@@ -7,13 +7,12 @@ namespace Nate.ContactApp
 {
     public class ContactRepository : IContactRepository
     {
-        private List<Contact> ContactList;
+        private static List<Contact> ContactList = new List<Contact>();
         private string lastSearchString;
         private List<Contact> lastSearch;
 
         public ContactRepository()
         {
-            ContactList = new List<Contact>();
             lastSearchString = string.Empty;
             lastSearch = new List<Contact>();
         }

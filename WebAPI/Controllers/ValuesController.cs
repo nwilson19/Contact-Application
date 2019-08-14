@@ -28,13 +28,15 @@ namespace Nate.ContactApp
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Contact value)
         {
+            ContactRepository database = new ContactRepository();
+            database.Post(value);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Contact value)
         {
             ContactRepository database = new ContactRepository();
             var recordID = database.Put(id, value);

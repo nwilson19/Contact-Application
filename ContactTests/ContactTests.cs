@@ -36,7 +36,7 @@ namespace Nate.ContactApp.Tests
         }
 
         [Fact]
-        public void IsEqual_Properly_Compares_Two_Contacts()
+        public void Equals_Properly_Compares_Two_Contacts()
         {
             Contact contact1 = new Contact();
             contact1.contactID = 12;
@@ -55,7 +55,7 @@ namespace Nate.ContactApp.Tests
             contact2.HomePhone = "(888) 867-5309";
             contact2.WorkPhone = "(888) 867-5309";
 
-            var isEqual = contact1.IsEqual(contact1, contact2);
+            var isEqual = contact1.Equals(contact2);
 
             Assert.True(isEqual);
 
