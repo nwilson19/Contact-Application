@@ -32,7 +32,12 @@ namespace Nate.ContactApp
         public int Post(Contact newContact)
         {
             if (newContact.IsValid())
-                ContactList.Add(newContact);
+            {
+                if (ContactList.Exists(i => i.contactID.Equals(newContact.contactID)))
+                    Put(newContact.contactID, newContact);
+                else
+                    ContactList.Add(newContact);
+            }
 
             return newContact.contactID;
         }
