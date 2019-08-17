@@ -55,7 +55,11 @@ namespace Nate.ContactApp
         //Get (Return a list)
         public List<Contact> Get()
         {
-            return ContactList;
+            var results = new List<Contact>();
+            foreach(Contact contact in ContactList)
+                if (contact.isActiveRecord)
+                    results.Add(contact);
+            return results;
         }
 
         //Get( ID ) - return a single record
@@ -64,6 +68,8 @@ namespace Nate.ContactApp
             // Currently will return null if an invalid id
             // Need to build in some exception handling for cases like this
             var result = ContactList.Find(i => i.contactID.Equals(id));
+            if (!result.isActiveRecord)
+                result = null;
             return result;
         }
 
