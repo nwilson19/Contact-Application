@@ -55,7 +55,7 @@ namespace Nate.ContactApp.Tests
             contact2.HomePhone = "(888) 867-5309";
             contact2.WorkPhone = "(888) 867-5309";
 
-            var isEqual = contact1.Equals(contact2);
+            var isEqual = contact1.IsEqualTo(contact2);
 
             Assert.True(isEqual);
 

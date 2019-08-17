@@ -16,7 +16,7 @@ namespace Nate.ContactApp
             return properNumber;
         }
 
-        public bool Equals(this Contact contact, Contact contact2)
+        public static bool IsEqualTo(this Contact contact, Contact contact2)
         {
              return (contact.isActiveRecord == contact2.isActiveRecord && contact.contactID == contact2.contactID &&
                      contact.email == contact2.email && contact.firstName == contact2.firstName &&
