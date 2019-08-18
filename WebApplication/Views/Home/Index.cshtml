@@ -2,7 +2,24 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<ul id="display">
+
+</ul>
+
+<script>
+    var xmlhttp = new XMLHttpRequest();
+    var results = ""
+
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonResults = JSON.parse(this.responseText);
+            for(contact in jsonResults)
+            {
+                results += "<li>" + jsonResults[contact].contactID + " " + jsonResults[contact].firstName + " " + jsonResults[contact].lastName + "</li>";
+            }
+            document.getElementById("display").innerHTML = results;
+        }
+    };
+    xmlhttp.open("GET", "/api/contact", true);
+    xmlhttp.send();
+</script>

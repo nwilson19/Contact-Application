@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nate.ContactApp.Contact", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nate.ContactApp.Contact.Tests", "ContactTests\Nate.ContactApp.Contact.Tests.csproj", "{DE678336-496A-4CF5-AA39-B27379ABE22C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage Management", "Storage Management", "{B8542DFC-B0D2-485F-B613-B47B02BE77F2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp and API", "WebApp and API\WebApp and API.csproj", "{3F8E3DB8-82F5-4CDA-9207-5DFD1DAFDBDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{6551DF66-A9EB-4FE0-9125-60E9D9A2FDA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,10 @@ Global
 		{DE678336-496A-4CF5-AA39-B27379ABE22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE678336-496A-4CF5-AA39-B27379ABE22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE678336-496A-4CF5-AA39-B27379ABE22C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F8E3DB8-82F5-4CDA-9207-5DFD1DAFDBDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F8E3DB8-82F5-4CDA-9207-5DFD1DAFDBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F8E3DB8-82F5-4CDA-9207-5DFD1DAFDBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F8E3DB8-82F5-4CDA-9207-5DFD1DAFDBDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6551DF66-A9EB-4FE0-9125-60E9D9A2FDA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6551DF66-A9EB-4FE0-9125-60E9D9A2FDA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6551DF66-A9EB-4FE0-9125-60E9D9A2FDA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6551DF66-A9EB-4FE0-9125-60E9D9A2FDA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
