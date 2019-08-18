@@ -1,0 +1,20 @@
+<html>
+  <div id="body">
+    <ul id="contacts"></ul>
+  </div>
+</html>
+
+@section scripts{
+<script type=text/javascript">
+$(function()
+{
+  $.getJSON('/api/contact', function(contactsJsonPayload)
+  {
+    $(contactsJsonPayload).each(function(i, item)
+	{
+	  $contacts('#contacts').append('<li>' + iten.Name + '</li>');
+	});
+  });
+});
+</script>
+}
