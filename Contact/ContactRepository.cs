@@ -67,10 +67,7 @@ namespace Nate.ContactApp
         {
             // Currently will return null if an invalid id
             // Need to build in some exception handling for cases like this
-            var result = ContactList.Find(i => i.contactID.Equals(id));
-            if (!result.isActiveRecord)
-                result = null;
-            return result;
+            return ContactList.Find(i => i.contactID.Equals(id));
         }
 
         //Delete - set a flag
