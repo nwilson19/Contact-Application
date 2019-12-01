@@ -6,6 +6,7 @@ namespace Nate.ContactApp
 {
     public static class Extensions
     {
+        /*
         public static string StripPhoneFormatting(this string phone)
         {
             string properNumber = phone;
@@ -15,13 +16,14 @@ namespace Nate.ContactApp
 
             return properNumber;
         }
+        */
 
         public static bool IsEqualTo(this Contact contact, Contact contact2)
         {
-             return (contact.isActiveRecord == contact2.isActiveRecord && contact.contactID == contact2.contactID &&
-                     contact.email == contact2.email && contact.firstName == contact2.firstName &&
-                     contact.lastName == contact2.lastName && contact.CellPhone == contact2.CellPhone &&
-                     contact.HomePhone == contact2.HomePhone && contact.WorkPhone == contact2.WorkPhone);
+             return (contact.IsActiveRecord == contact2.IsActiveRecord && contact.ContactID == contact2.ContactID &&
+                     contact.Email.Address == contact2.Email.Address && contact.FirstName == contact2.FirstName &&
+                     contact.LastName == contact2.LastName && contact.Cell.Number == contact2.Cell.Number &&
+                     contact.Home.Number == contact2.Home.Number && contact.Work.Number == contact2.Work.Number);
         }
 
     }

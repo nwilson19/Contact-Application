@@ -24,7 +24,7 @@ namespace Nate.ContactApp.Tests
             var testContact = testContainer.Get(12);
 
             //Assert
-            Assert.Equal(12, testContact.contactID);
+            Assert.Equal(12, testContact.ContactID);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Nate.ContactApp.Tests
 
             foreach (Contact contact in newList)
             {
-                var testContact = contactData.Get(contact.contactID);
+                var testContact = contactData.Get(contact.ContactID);
                 Assert.True(contact.IsEqualTo(testContact));
             }
         }
@@ -62,7 +62,7 @@ namespace Nate.ContactApp.Tests
             var testContact = testContainer.Get(1);
 
             //Assert
-            Assert.Equal(1, testContact.contactID);
+            Assert.Equal(1, testContact.ContactID);
         }
 
         [Fact]
@@ -75,9 +75,9 @@ namespace Nate.ContactApp.Tests
             var contact2 = testContainer.Get(100);
             var contact3 = testContainer.Get(1);
 
-            Assert.False(contact.isActiveRecord);
-            Assert.True(contact2.isActiveRecord);
-            Assert.True(contact3.isActiveRecord);
+            Assert.False(contact.IsActiveRecord);
+            Assert.True(contact2.IsActiveRecord);
+            Assert.True(contact3.IsActiveRecord);
         }
 
         [Fact]
@@ -86,155 +86,64 @@ namespace Nate.ContactApp.Tests
             ContactRepository testContainer = GenerateSmallList();
 
             Contact newContact = new Contact();
-            newContact.contactID = 12;
-            newContact.email = "different@gmail.com";
-            newContact.firstName = "New";
-            newContact.lastName = "Contact";
-            newContact.CellPhone = "(888) 867-5309";
-            newContact.HomePhone = "(888) 867-5309";
-            newContact.WorkPhone = "(888) 867-5309";
+            newContact.ContactID = 12;
+            newContact.Email.Address = "different@gmail.com";
+            newContact.FirstName = "New";
+            newContact.LastName = "Contact";
+            newContact.Cell.Number = "(888) 867-5309";
+            newContact.Home.Number = "(888) 867-5309";
+            newContact.Work.Number = "(888) 867-5309";
 
-            testContainer.Put(newContact.contactID, newContact);
-            var testContact = testContainer.Get(newContact.contactID);
+            testContainer.Put(newContact.ContactID, newContact);
+            var testContact = testContainer.Get(newContact.ContactID);
 
             Assert.True(newContact.IsEqualTo(testContact));
         }
-
-        [Fact]
-        public void Filter_returns_expected_value_first_name()
-        {
-            var testContainer = GenerateSmallList();
-
-            //Act
-            var results = testContainer.Filter("Test");
-
-            //Assert
-            foreach (Contact contact in results)
-            {
-                Assert.Contains("Test", contact.firstName);
-            }
-            Assert.Equal(3, results.Count);
-        }
-
-        [Fact]
-        public void Filter_works_when_called_multiple_times()
-        {
-            var testContainer = GenerateSmallList();
-
-            //Act
-            var results = testContainer.Filter("Tes");
-            var results2 = testContainer.Filter("Test");
-
-            //Assert
-            foreach (Contact contact in results)
-            {
-                Assert.Contains("Tes", contact.firstName);
-            }
-            Assert.Equal(4, results.Count);
-
-            foreach (Contact contact in results2)
-            {
-                Assert.Contains("Test", contact.firstName);
-            }
-            Assert.Equal(3, results2.Count);
-        }
-
-        [Fact]
-        public void Filter_returns_expected_value_last_name()
-        {
-            var testContainer = GenerateSmallList();
-
-            //Act
-            var results = testContainer.Filter("Contact");
-
-            //Assert
-            foreach (Contact contact in results)
-            {
-                Assert.Contains("Contact", contact.lastName);
-            }
-            Assert.Equal(3, results.Count);
-        }
-
-        [Fact]
-        public void Filter_returns_expected_value_last_name2()
-        {
-            var testContainer = GenerateSmallList();
-
-            //Act
-            var results = testContainer.Filter("100");
-
-            //Assert
-            foreach (Contact contact in results)
-            {
-                Assert.Contains("100", contact.lastName);
-            }
-            Assert.Equal(1, results.Count);
-        }
-
-        [Fact]
-        public void Filter_returns_expected_value_email()
-        {
-            var testContainer = GenerateSmallList();
-
-            //Act
-            var results = testContainer.Filter(".com");
-
-            //Assert
-            foreach (Contact contact in results)
-            {
-                Assert.Contains(".com", contact.email);
-            }
-            Assert.Equal(2, results.Count);
-        }
-
-
 
         private ContactRepository GenerateSmallList()
         {
             ContactRepository testContainer = new ContactRepository();
 
             Contact contact = new Contact();
-            contact.contactID = 12;
-            contact.email = "newcontact1@gmail.com";
-            contact.firstName = "Test";
-            contact.lastName = "Contact";
-            contact.CellPhone = "(888) 867-5309";
-            contact.HomePhone = "(888) 867-5309";
-            contact.WorkPhone = "(888) 867-5309";
+            contact.ContactID = 12;
+            contact.Email.Address = "newcontact1@gmail.com";
+            contact.FirstName = "Test";
+            contact.LastName = "Contact";
+            contact.Cell.Number = "(888) 867-5309";
+            contact.Home.Number = "(888) 867-5309";
+            contact.Work.Number = "(888) 867-5309";
 
             Contact contact2 = new Contact();
-            contact2.contactID = 100;
-            contact2.email = "newcontact12@gmail.com";
-            contact2.firstName = "Test";
-            contact2.lastName = "Contact 100";
-            contact2.CellPhone = "(888) 867-5309";
-            contact2.HomePhone = "(888) 867-5309";
-            contact2.WorkPhone = "(888) 867-5309";
+            contact2.ContactID = 100;
+            contact2.Email.Address = "newcontact12@gmail.com";
+            contact2.FirstName = "Test";
+            contact2.LastName = "Contact 100";
+            contact2.Cell.Number = "(888) 867-5309";
+            contact2.Home.Number = "(888) 867-5309";
+            contact2.Work.Number = "(888) 867-5309";
 
             Contact contact3 = new Contact();
-            contact3.contactID = 1;
-            contact3.email = "newcontact1@gmail.net";
-            contact3.firstName = "Test";
-            contact3.lastName = "Contact";
-            contact3.CellPhone = "(888) 867-5309";
-            contact3.HomePhone = "(888) 867-5309";
-            contact3.WorkPhone = "(888) 867-5309";
+            contact3.ContactID = 1;
+            contact3.Email.Address = "newcontact1@gmail.net";
+            contact3.FirstName = "Test";
+            contact3.LastName = "Contact";
+            contact3.Cell.Number = "(888) 867-5309";
+            contact3.Home.Number = "(888) 867-5309";
+            contact3.Work.Number = "(888) 867-5309";
 
             Contact contact4 = new Contact();
-            contact4.contactID = 9;
-            contact4.email = "newcontact1@gmail.ca";
-            contact4.firstName = "Tes";
-            contact4.lastName = "Contac";
-            contact4.CellPhone = "(888) 867-5309";
-            contact4.HomePhone = "(888) 867-5309";
-            contact4.WorkPhone = "(888) 867-5309";
-
+            contact4.ContactID = 9;
+            contact4.Email.Address = "newcontact1@gmail.ca";
+            contact4.FirstName = "Tes";
+            contact4.LastName = "Contac";
+            contact4.Cell.Number = "(888) 867-5309";
+            contact4.Home.Number = "(888) 867-5309";
+            contact4.Work.Number = "(888) 867-5309";
 
             var recordnumber = testContainer.Post(contact);
             recordnumber = testContainer.Post(contact2);
             recordnumber = testContainer.Post(contact3);
             recordnumber = testContainer.Post(contact4);
-
 
             return testContainer;
         }

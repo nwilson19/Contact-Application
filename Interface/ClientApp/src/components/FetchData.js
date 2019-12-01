@@ -12,6 +12,7 @@ export class FetchData extends Component {
       .then(data => {
         this.setState({ contacts: data, loading: false });
       });
+
   }
 
   static renderContactsTable (contacts) {
@@ -37,9 +38,9 @@ export class FetchData extends Component {
               <td>{contact.firstName}</td>
               <td>{contact.lastName}</td>
               <td>{contact.email}</td>
-              <td>{contact.phoneHome}</td>
-              <td>{contact.phoneWork}</td>
-              <td>{contact.phoneCell}</td>
+              <td>{contact.homePhone}</td>
+              <td>{contact.workPhone}</td>
+              <td>{contact.cellPhone}</td>
             </tr>
           )}
         </tbody>

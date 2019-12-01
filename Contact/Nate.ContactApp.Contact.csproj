@@ -10,8 +10,4 @@
     <Compile Remove="IContactContainer.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Swagger.Net.UI" Version="1.1.0" />
-  </ItemGroup>
-
 </Project>

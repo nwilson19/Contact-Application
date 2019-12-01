@@ -24,7 +24,7 @@ namespace Nate.ContactApp
         {
             var isValidEmail = true;
 
-            if (!contact.email.Contains("@") && contact.email.Length > 0)
+            if (!contact.Email.Address.Contains("@") && contact.Email.Address.Length > 0)
                 isValidEmail = false;
 
             return isValidEmail;
@@ -34,7 +34,7 @@ namespace Nate.ContactApp
         {
             var isValidID = true;
 
-            if ( contact.contactID < 0 )
+            if ( contact.ContactID < 0 )
                 isValidID = false;
 
             return isValidID;
@@ -44,7 +44,7 @@ namespace Nate.ContactApp
         {
             var isValidName = true;
 
-            if (contact.firstName.Length == 0 && contact.lastName.Length == 0)
+            if (contact.FirstName.Length == 0 && contact.LastName.Length == 0)
                 isValidName = false;
 
             return isValidName;
@@ -54,11 +54,11 @@ namespace Nate.ContactApp
         {
             var isValidPhone = false;
 
-            if (contact.HomePhone.Length == 0 || contact.HomePhone.Length == 10)   //Assuming US Phone Number of 10 digits or empty field
+            if (contact.Home.Number.Length == 0 || contact.Home.Number.Length == 10)   //Assuming US Phone Number of 10 digits or empty field
                 isValidPhone = true;
-            if (contact.WorkPhone.Length == 0 || contact.WorkPhone.Length == 10)
+            if (contact.Work.Number.Length == 0 || contact.Work.Number.Length == 10)
                 isValidPhone = true;
-            if (contact.CellPhone.Length == 0 || contact.CellPhone.Length == 10)
+            if (contact.Cell.Number.Length == 0 || contact.Cell.Number.Length == 10)
                 isValidPhone = true;
 
             return isValidPhone;

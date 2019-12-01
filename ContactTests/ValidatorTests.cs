@@ -15,7 +15,7 @@ namespace Nate.ContactApp.Tests
             var isValidID = true;
 
             //Act
-            test.email = "test@test.com";
+            test.Email.Address = "test@test.com";
             var testResult = test.hasValidEmail();
 
             //Assert
@@ -30,7 +30,7 @@ namespace Nate.ContactApp.Tests
             var isValidEmail = false;
 
             //Act
-            test.email = "testtest.com";
+            test.Email.Address = "testtest.com";
             var testResult = test.hasValidEmail();
 
             //Assert
@@ -45,7 +45,7 @@ namespace Nate.ContactApp.Tests
             var isValidID = false;
 
             //Act
-            test.contactID = -1;
+            test.ContactID = -1;
             var testResult = test.hasValidID();
 
             //Assert
@@ -60,7 +60,7 @@ namespace Nate.ContactApp.Tests
             var isValidID = true;
 
             //Act
-            test.contactID = 0;
+            test.ContactID = 0;
             var testResult = test.hasValidID();
 
             //Assert
@@ -75,7 +75,7 @@ namespace Nate.ContactApp.Tests
             var isValidID = true;
 
             //Act
-            test.contactID = 7854362;
+            test.ContactID = 7854362;
             var testResult = test.hasValidID();
 
             //Assert
@@ -90,7 +90,7 @@ namespace Nate.ContactApp.Tests
             var isValidID = true;
 
             //Act
-            test.firstName = "Test";
+            test.FirstName = "Test";
             var testResult = test.hasValidName();
 
             //Assert
@@ -105,7 +105,7 @@ namespace Nate.ContactApp.Tests
             var isValidID = true;
 
             //Act
-            test.lastName = "Test";
+            test.LastName = "Test";
             var testResult = test.hasValidName();
 
             //Assert
@@ -145,7 +145,7 @@ namespace Nate.ContactApp.Tests
         {
             //Arrange
             Contact test = new Contact();
-            test.HomePhone = "(888) 867-5309";
+            test.Home.Number = "(888) 867-5309";
             var isValidID = true;
 
             //Act
@@ -160,7 +160,7 @@ namespace Nate.ContactApp.Tests
         {
             //Arrange
             Contact test = new Contact();
-            test.WorkPhone = "(888) 867-5309";
+            test.Work.Number = "(888) 867-5309";
             var isValidID = true;
 
             //Act
@@ -175,7 +175,7 @@ namespace Nate.ContactApp.Tests
         {
             //Arrange
             Contact test = new Contact();
-            test.CellPhone = "(888) 867-5309";
+            test.Cell.Number = "(888) 867-5309";
             var isValidID = true;
 
             //Act
