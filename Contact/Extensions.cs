@@ -26,5 +26,14 @@ namespace Nate.ContactApp
                      contact.Home.Number == contact2.Home.Number && contact.Work.Number == contact2.Work.Number);
         }
 
+        /// <summary>
+        /// Extended version of the string.Contains() method, 
+        /// accepting a [StringComparison] object to perform different kind of comparisons
+        /// </summary>
+        public static bool Contains(this string source, string value, StringComparison comparisonType)
+        {
+            return source?.IndexOf(value, comparisonType) >= 0;
+        }
+
     }
 }

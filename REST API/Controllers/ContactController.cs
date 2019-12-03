@@ -30,14 +30,14 @@ namespace Nate.ContactApp
         [HttpPost]
         public void Post([FromBody]Contact contact)
         {
-            database.Post(contact);
+            database.Save(contact);
         }
 
         // PUT api/Contact/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Contact contact)
         {
-            database.Put(id, contact);
+            database.Save(id, contact);
         }
 
         // DELETE api/Contact/5

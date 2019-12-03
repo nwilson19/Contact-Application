@@ -91,6 +91,23 @@ namespace Nate.ContactApp.Tests
             }
             Assert.Equal(2, results.Count);
         }
+
+        [Fact]
+        public void Filter_returns_expected_while_ignoring_capitalization()
+        {
+            var testContainer = GenerateSmallList();
+
+            //Act
+            var results = Search.Filter(testContainer.Get(), "TEST");
+
+            //Assert
+            foreach (Contact contact in results)
+            {
+                Assert.Contains("Test", contact.FirstName);
+            }
+            Assert.Equal(3, results.Count);
+        }
+
         private ContactRepository GenerateSmallList()
         {
             ContactRepository testContainer = new ContactRepository();
@@ -131,10 +148,10 @@ namespace Nate.ContactApp.Tests
             contact4.Home.Number = "(888) 867-5309";
             contact4.Work.Number = "(888) 867-5309";
 
-            var recordnumber = testContainer.Post(contact);
-            recordnumber = testContainer.Post(contact2);
-            recordnumber = testContainer.Post(contact3);
-            recordnumber = testContainer.Post(contact4);
+            var recordnumber = testContainer.Save(contact);
+            recordnumber = testContainer.Save(contact2);
+            recordnumber = testContainer.Save(contact3);
+            recordnumber = testContainer.Save(contact4);
 
             return testContainer;
         }

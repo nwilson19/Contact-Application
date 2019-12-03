@@ -81,7 +81,7 @@ namespace Nate.ContactApp.Tests
         }
 
         [Fact]
-        public void Put_updates_the_correct_record()
+        public void Save_updates_the_correct_record()
         {
             ContactRepository testContainer = GenerateSmallList();
 
@@ -94,7 +94,7 @@ namespace Nate.ContactApp.Tests
             newContact.Home.Number = "(888) 867-5309";
             newContact.Work.Number = "(888) 867-5309";
 
-            testContainer.Put(newContact.ContactID, newContact);
+            testContainer.Save(newContact.ContactID, newContact);
             var testContact = testContainer.Get(newContact.ContactID);
 
             Assert.True(newContact.IsEqualTo(testContact));
@@ -140,10 +140,10 @@ namespace Nate.ContactApp.Tests
             contact4.Home.Number = "(888) 867-5309";
             contact4.Work.Number = "(888) 867-5309";
 
-            var recordnumber = testContainer.Post(contact);
-            recordnumber = testContainer.Post(contact2);
-            recordnumber = testContainer.Post(contact3);
-            recordnumber = testContainer.Post(contact4);
+            var recordnumber = testContainer.Save(contact);
+            recordnumber = testContainer.Save(contact2);
+            recordnumber = testContainer.Save(contact3);
+            recordnumber = testContainer.Save(contact4);
 
             return testContainer;
         }

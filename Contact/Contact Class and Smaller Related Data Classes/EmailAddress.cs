@@ -6,16 +6,11 @@ namespace Nate.ContactApp
 {
     public class EmailAddress
     {
-        private string emailAddress;
-        public string Address
-        {
-            get => emailAddress;
-            set => emailAddress = value;
-        }
+        public string Address { get; set; }
 
         public EmailAddress()
         {
-            emailAddress = null;
+            Address = null;
         }
     }
 }

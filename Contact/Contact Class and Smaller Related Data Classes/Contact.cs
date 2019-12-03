@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Nate.ContactApp
@@ -14,6 +15,7 @@ namespace Nate.ContactApp
         public PhoneNumber Home;
         public PhoneNumber Work;
         public PhoneNumber Cell;
+        [EmailAddress]
         public EmailAddress Email;
         public PhysicalAddress Address;
         public string Notes;

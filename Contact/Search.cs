@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Nate.ContactApp
@@ -13,7 +14,7 @@ namespace Nate.ContactApp
 
             var results = new List<Contact>();
 
-            if (parameter.Contains(lastSearchString) && lastSearchString != string.Empty)
+            if (parameter.Contains(lastSearchString, StringComparison.InvariantCultureIgnoreCase) && lastSearchString != string.Empty)
                 if (parameter == lastSearchString)
                     results = lastSearch;
                 else
@@ -32,12 +33,12 @@ namespace Nate.ContactApp
             var searchData =
             from contact in database
             where contact.IsActiveRecord && (
-            contact.FirstName.Contains(parameter) ||
-            contact.LastName.Contains(parameter) ||
-            contact.Email.Address.Contains(parameter) ||
-            contact.Cell.Number.Contains(parameter) ||
-            contact.Home.Number.Contains(parameter) ||
-            contact.Work.Number.Contains(parameter))
+            contact.FirstName.Contains(parameter, StringComparison.InvariantCultureIgnoreCase) ||
+            contact.LastName.Contains(parameter, StringComparison.InvariantCultureIgnoreCase) ||
+            contact.Email.Address.Contains(parameter, StringComparison.InvariantCultureIgnoreCase) ||
+            contact.Cell.Number.Contains(parameter, StringComparison.InvariantCultureIgnoreCase) ||
+            contact.Home.Number.Contains(parameter, StringComparison.InvariantCultureIgnoreCase) ||
+            contact.Work.Number.Contains(parameter, StringComparison.InvariantCultureIgnoreCase))
             select contact;
 
             return searchData.ToList();

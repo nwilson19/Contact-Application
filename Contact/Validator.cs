@@ -54,11 +54,11 @@ namespace Nate.ContactApp
         {
             var isValidPhone = false;
 
-            if (contact.Home.Number.Length == 0 || contact.Home.Number.Length == 10)   //Assuming US Phone Number of 10 digits or empty field
+            if (contact.Home.Number == null || contact.Home.Number.Length == 0 || contact.Home.Number.Length == 10)   //Assuming US Phone Number of 10 digits or empty field
                 isValidPhone = true;
-            if (contact.Work.Number.Length == 0 || contact.Work.Number.Length == 10)
+            if (contact.Work.Number == null || contact.Work.Number.Length == 0 || contact.Work.Number.Length == 10)
                 isValidPhone = true;
-            if (contact.Cell.Number.Length == 0 || contact.Cell.Number.Length == 10)
+            if (contact.Cell.Number == null || contact.Cell.Number.Length == 0 || contact.Cell.Number.Length == 10)
                 isValidPhone = true;
 
             return isValidPhone;
