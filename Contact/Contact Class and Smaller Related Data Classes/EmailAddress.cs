@@ -12,5 +12,10 @@ namespace Nate.ContactApp
             get => emailAddress;
             set => emailAddress = value;
         }
+
+        public EmailAddress()
+        {
+            emailAddress = null;
+        }
     }
 }

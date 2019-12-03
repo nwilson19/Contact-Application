@@ -31,19 +31,5 @@ namespace Nate.ContactApp
             Address = new PhysicalAddress();
             Notes = "";
         }
-
-        public Contact(int newID)
-        {
-            ContactID = newID;
-            IsActiveRecord = true;
-            FirstName = "";
-            LastName = "";
-            Home = new PhoneNumber();
-            Work = new PhoneNumber();
-            Cell = new PhoneNumber();
-            Email = new EmailAddress();
-            Address = new PhysicalAddress();
-            Notes = "";
-        }
     }
 }

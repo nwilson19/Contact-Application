@@ -16,7 +16,7 @@ namespace Nate.ContactApp
 
         public PhoneNumber()
         {
-            phoneNumber = "";
+            phoneNumber = null;
         }
 
         private string StripPhoneFormatting(string number)

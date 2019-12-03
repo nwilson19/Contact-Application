@@ -13,24 +13,13 @@ namespace Nate.ContactApp
         {
         }
 
-        // Save Function name to hide the HTTP verbs for saving
+        // Save (Create a new record)
         public int Save(Contact newContact)
-        {
-            return Post(newContact);
-        }
-
-        public int Save(int id, Contact newContact)
-        {
-            return Put(id, newContact);
-        }
-
-        // Post (Create new record)
-        public int Post(Contact newContact)
         {
             if (newContact.IsValid())
             {
                 if (ContactList.Exists(i => i.ContactID.Equals(newContact.ContactID)))
-                    Put(newContact.ContactID, newContact);
+                    Save(newContact.ContactID, newContact);
                 else
                     ContactList.Add(newContact);
             }
@@ -38,14 +27,14 @@ namespace Nate.ContactApp
             return newContact.ContactID;
         }
 
-        //Put (Update a record, return the record's ID)
-        public int Put(int id, Contact updatedContact)
+        // Save (Update a record, return the record's ID)
+        public int Save(int id, Contact UpdatedContact)
         {
             var currentRecord = ContactList.Find(i => i.ContactID.Equals(id));
             ContactList.Remove(currentRecord);
-            ContactList.Add(updatedContact);
+            ContactList.Add(UpdatedContact);
 
-            return updatedContact.ContactID;
+            return UpdatedContact.ContactID;
         }
 
         //Get (Return a list)

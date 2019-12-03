@@ -12,13 +12,43 @@ namespace Nate.ContactApp
         private string state;
         private string postalCode;
 
+        public string Line1
+        {
+            get => line1;
+            set => line1 = value;
+        }
+
+        public string Line2
+        {
+            get => line2;
+            set => line2 = value;
+        }
+
+        public string City
+        {
+            get => city;
+            set => city = value;
+        }
+
+        public string State
+        {
+            get => state;
+            set => state = value;
+        }
+
+        public string PostalCode
+        {
+            get => postalCode;
+            set => postalCode = value;
+        }
+
         public PhysicalAddress()
         {
-            line1 = "";
-            line2 = "";
-            city = "";
-            state = "";
-            postalCode = "";
+            line1 = null;
+            line2 = null;
+            city = null;
+            state = null;
+            postalCode = null;
         }
 
     }
