@@ -22,7 +22,7 @@ namespace NateCRM.Repository
                 if (Records.Exists(i => i.RecordID.Equals(newRecord.RecordID)))
                     Save(newRecord.RecordID, newRecord);
                 else
-                    Records.Add(newRecord);
+                    Add(newRecord);
             }
 
             return newRecord.RecordID;
@@ -58,8 +58,17 @@ namespace NateCRM.Repository
 
         //Delete - set a flag
         public void Delete(int id)
+        {            
+            if(Records.Exists(i => i.RecordID.Equals(id)))
+                Records.Find(i => i.RecordID.Equals(id)).Attributes.Deleted = true;
+        }
+
+        // This automatically increments the record id when saving a new record
+        private void Add(Record newRecord)
         {
-            Records.Find(i => i.RecordID.Equals(id)).Attributes.Deleted = true;
+            newRecord.RecordID = newRecord.Person.RecordID = newRecord.Attributes.RecordID = Records.Count() + 1;
+            newRecord.Attributes.Deleted = false;
+            Records.Add(newRecord);
         }
     }
 }
