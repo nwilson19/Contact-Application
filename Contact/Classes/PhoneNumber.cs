@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace Nate.ContactApp
-{
+namespace NateCRM.Classes
+{ 
+
     public class PhoneNumber
     {
+
         private string phoneNumber;
         public string Number
         {
@@ -19,7 +21,7 @@ namespace Nate.ContactApp
             phoneNumber = null;
         }
 
-        private string StripPhoneFormatting(string number)
+        private static string StripPhoneFormatting(string number)
         {
             string properNumber = number;
 
@@ -27,6 +29,16 @@ namespace Nate.ContactApp
                 properNumber = String.Join("", number.Where(c => Char.IsDigit(c)));
 
             return properNumber;
+        }
+
+        public bool Validate(PhoneNumber Phone)
+        {
+            var isValidPhone = false;
+
+            if (Phone.Number == null || Phone.Number.Length == 0 || Phone.Number.Length == 10)   //Assuming US Phone Number of 10 digits or empty field
+                isValidPhone = true;
+
+            return isValidPhone;
         }
     }
 }

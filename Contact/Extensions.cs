@@ -1,29 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using NateCRM.Classes;
+using System;
 
-namespace Nate.ContactApp
+namespace NateCRM
 {
     public static class Extensions
     {
-        /*
-        public static string StripPhoneFormatting(this string phone)
+        public static bool IsEqualTo(this Record record, Record record2)
         {
-            string properNumber = phone;
-
-            if (properNumber != null)
-                properNumber = String.Join("", phone.Where(c => Char.IsDigit(c)));
-
-            return properNumber;
-        }
-        */
-
-        public static bool IsEqualTo(this Contact contact, Contact contact2)
-        {
-             return (contact.IsActiveRecord == contact2.IsActiveRecord && contact.ContactID == contact2.ContactID &&
-                     contact.Email.Address == contact2.Email.Address && contact.FirstName == contact2.FirstName &&
-                     contact.LastName == contact2.LastName && contact.Cell.Number == contact2.Cell.Number &&
-                     contact.Home.Number == contact2.Home.Number && contact.Work.Number == contact2.Work.Number);
+            return (record.Attributes.Deleted == record2.Attributes.Deleted && record.RecordID == record2.RecordID &&
+                    record.Person.Email.Address == record2.Person.Email.Address && record.Person.FirstName == record2.Person.FirstName &&
+                    record.Person.LastName == record2.Person.LastName && record.Person.Cell.Number == record2.Person.Cell.Number &&
+                    record.Person.Home.Number == record2.Person.Home.Number && record.Person.Work.Number == record.Person.Work.Number);
         }
 
         /// <summary>
@@ -35,5 +22,31 @@ namespace Nate.ContactApp
             return source?.IndexOf(value, comparisonType) >= 0;
         }
 
+        /// <summary>
+        /// Extended version of the EmailAddress.Validate() method, 
+        /// accepting an [EmailAddress] object to perform different kind of comparisons
+        /// </summary>
+        public static bool Validate(this EmailAddress EmailAddress)
+        {          
+            return EmailAddress.Validate(EmailAddress);
+        }
+
+        /// <summary>
+        /// Extended version of the PhoneNumber.Validate() method, 
+        /// accepting an [PhoneNumber] object to perform different kind of comparisons
+        /// </summary>
+        public static bool Validate(this PhoneNumber Phone)
+        {
+            return Phone.Validate(Phone);
+        }
+
+        /// <summary>
+        /// Extended version of the Record.ValidateID() method, 
+        /// accepting an [Record] object to check the RecordID
+        /// </summary>
+        public static bool ValidateID(this Record record)
+        {
+            return record.ValidateID(record);
+        }
     }
 }
